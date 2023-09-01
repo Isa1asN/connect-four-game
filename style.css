@@ -1,6 +1,7 @@
 body{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  background-color: rgb(161, 182, 200);
 }
 
 #board {
@@ -16,7 +17,9 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
-
+.info{
+  margin-left: 20px;
+}
 .tile{
   width: 70px;
   height: 70px;
