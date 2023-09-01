@@ -4,6 +4,7 @@ var currPlayer = playerRed
 
 var gameOver = false
 var board
+var currColRowInd
 
 var rows = 6
 var columns = 7
@@ -13,6 +14,7 @@ window.onload = function(){
 }
 function setGame(){
   board = []
+  currColRowInd = [5, 5, 5, 5, 5, 5, 5] 
   for (let r = 0; r < rows; r++) {
     let row = []
     for (let c = 0; c < columns; c++){
@@ -38,8 +40,13 @@ function setPiece(){
   let r = parseInt(coords[0])
   let c = parseInt(coords[1])
 
+  r = currColRowInd[c]
+  if(r<0){
+    return;
+  }
+
   board[r][c] = currPlayer
-  let tile = this
+  let tile = document.getElementById(`${r}-${c}`)
   if(currPlayer == playerRed){
     tile.classList.add('red-piece')
     currPlayer = playerYellow
@@ -48,4 +55,5 @@ function setPiece(){
     tile.classList.add('yellow-piece')
     currPlayer = playerRed
   }
+  currColRowInd[c] -= 1
 }
