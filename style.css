@@ -25,3 +25,9 @@ body{
   margin: 5px;
   border: 5px solid navy;
 }
+.red-piece{
+  background-color: red;
+}
+.yellow-piece{
+  background-color: yellow;
+}
