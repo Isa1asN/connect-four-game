@@ -2,6 +2,16 @@ var playerRed = 'R'
 var playerYellow = 'Y'
 var currPlayer = playerRed
 
+document.addEventListener('DOMContentLoaded', function() {
+  let turnFlag = document.querySelector('.t-flag')
+  if(currPlayer == playerRed){
+    turnFlag.style.backgroundColor = 'red'
+  } else {
+    turnFlag.style.backgroundColor = 'yellow'
+  }
+})
+
+
 var gameOver = false
 var board
 var currColRowInd
@@ -46,14 +56,17 @@ function setPiece(){
   }
 
   board[r][c] = currPlayer
+  let turnFlag = document.querySelector('.t-flag')
   let tile = document.getElementById(`${r}-${c}`)
   if(currPlayer == playerRed){
     tile.classList.add('red-piece')
     currPlayer = playerYellow
+    turnFlag.style.backgroundColor = 'yellow'
   }
   else{
     tile.classList.add('yellow-piece')
     currPlayer = playerRed
+    turnFlag.style.backgroundColor = 'red'
   }
   currColRowInd[c] -= 1
 

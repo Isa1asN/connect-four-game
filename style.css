@@ -13,6 +13,19 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
+#turn{
+  display: flex;
+  margin-left: 20px;
+
+}
+.t-flag{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    margin-left: 10px;
+    border: 2px solid navy;
+}
 
 .main{
   display: flex;
