@@ -1,7 +1,7 @@
 body{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  background-color: rgb(161, 182, 200);
+  background-color: rgb(129, 156, 180);
 }
 
 #board {
@@ -13,6 +13,7 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
+
 .main{
   display: flex;
   flex-wrap: wrap;
