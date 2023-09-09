@@ -129,9 +129,149 @@ function minimax(board, depth, isMaximizing, alpha = -Infinity, beta = Infinity)
 
 // Function to evaluate the board state
 function evaluate(board) {
-  
-  return 2;
+  const aiPlayer = playerYellow;
+  const opponent = playerRed;
+
+  // Evaluate threats and positions for both AI and opponent
+  const aiThreats = evaluateThreats(board, aiPlayer);
+  const opponentThreats = evaluateThreats(board, opponent);
+  const aiPosition = evaluatePosition(board, aiPlayer);
+  const opponentPosition = evaluatePosition(board, opponent);
+
+  // Calculate the final score based on threats and positions
+  const aiScore = aiThreats * 100 + aiPosition;
+  const opponentScore = opponentThreats * 100 + opponentPosition;
+
+  // Return the difference between AI and opponent scores
+  return aiScore - opponentScore;
 }
+
+// Function to evaluate threats on the board
+function evaluateThreats(board, player) {
+  let threatScore = 0;
+
+  // Define the player's piece and the opponent's piece
+  const playerPiece = player;
+  const opponentPiece = player === playerRed ? playerYellow : playerRed;
+
+  // Check horizontally for threats
+  for (let r = 0; r < numRows; r++) {
+    for (let c = 0; c < numCols - 3; c++) {
+      const window = board[r].slice(c, c + 4); // Get a window of 4 columns
+      const playerCount = window.filter(piece => piece === playerPiece).length;
+      const opponentCount = window.filter(piece => piece === opponentPiece).length;
+
+      if (playerCount === 4) {
+        // Player has 4 in a row, it's a winning move
+        return Infinity;
+      } else if (playerCount === 3 && opponentCount === 0) {
+        // Three player pieces, no opponent pieces, potential winning move
+        threatScore += 100;
+      } else if (playerCount === 2 && opponentCount === 0) {
+        // Two player pieces, no opponent pieces, potential threat
+        threatScore += 10;
+      } else if (playerCount === 1 && opponentCount === 0) {
+        // One player piece, no opponent pieces, less potential
+        threatScore += 1;
+      }
+    }
+  }
+
+  // Check vertically for threats
+  for (let c = 0; c < numCols; c++) {
+    for (let r = 0; r < numRows - 3; r++) {
+      const window = board.slice(r, r + 4).map(row => row[c]); // Get a window of 4 rows
+      const playerCount = window.filter(piece => piece === playerPiece).length;
+      const opponentCount = window.filter(piece => piece === opponentPiece).length;
+
+      if (playerCount === 4) {
+        // Player has 4 in a row, it's a winning move
+        return Infinity;
+      } else if (playerCount === 3 && opponentCount === 0) {
+        // Three player pieces, no opponent pieces, potential winning move
+        threatScore += 100;
+      } else if (playerCount === 2 && opponentCount === 0) {
+        // Two player pieces, no opponent pieces, potential threat
+        threatScore += 10;
+      } else if (playerCount === 1 && opponentCount === 0) {
+        // One player piece, no opponent pieces, less potential
+        threatScore += 1;
+      }
+    }
+  }
+
+  // Check diagonally for threats (top-left to bottom-right)
+  for (let r = 0; r < numRows - 3; r++) {
+    for (let c = 0; c < numCols - 3; c++) {
+      const window = Array.from({ length: 4 }, (_, i) => board[r + i][c + i]);
+      const playerCount = window.filter(piece => piece === playerPiece).length;
+      const opponentCount = window.filter(piece => piece === opponentPiece).length;
+
+      if (playerCount === 4) {
+        // Player has 4 in a row, it's a winning move
+        return Infinity;
+      } else if (playerCount === 3 && opponentCount === 0) {
+        // Three player pieces, no opponent pieces, potential winning move
+        threatScore += 100;
+      } else if (playerCount === 2 && opponentCount === 0) {
+        // Two player pieces, no opponent pieces, potential threat
+        threatScore += 10;
+      } else if (playerCount === 1 && opponentCount === 0) {
+        // One player piece, no opponent pieces, less potential
+        threatScore += 1;
+      }
+    }
+  }
+
+  // Check diagonally for threats (top-right to bottom-left)
+  for (let r = 0; r < numRows - 3; r++) {
+    for (let c = 3; c < numCols; c++) {
+      const window = Array.from({ length: 4 }, (_, i) => board[r + i][c - i]);
+      const playerCount = window.filter(piece => piece === playerPiece).length;
+      const opponentCount = window.filter(piece => piece === opponentPiece).length;
+
+      if (playerCount === 4) {
+        // Player has 4 in a row, it's a winning move
+        return Infinity;
+      } else if (playerCount === 3 && opponentCount === 0) {
+        // Three player pieces, no opponent pieces, potential winning move
+        threatScore += 100;
+      } else if (playerCount === 2 && opponentCount === 0) {
+        // Two player pieces, no opponent pieces, potential threat
+        threatScore += 10;
+      } else if (playerCount === 1 && opponentCount === 0) {
+        // One player piece, no opponent pieces, less potential
+        threatScore += 1;
+      }
+    }
+  }
+
+  return threatScore;
+}
+
+
+// Function to evaluate the position of pieces on the board
+function evaluatePosition(board, player) {
+  let positionScore = 0;
+
+  // Evaluate the position of pieces on the board
+  // Assigning higher scores to pieces in the center columns
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < numCols; col++) {
+      if (board[row][col] === player) {
+        // Assign higher scores to pieces in the center columns
+        if (col >= 2 && col <= 4) {
+          positionScore += 2;
+        } else {
+          positionScore += 1;
+        }
+      }
+    }
+  }
+
+  return positionScore;
+}
+
 
 // Function to check if the game is over
 function isGameOver() {
