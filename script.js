@@ -162,16 +162,12 @@ function evaluateThreats(board, player) {
       const opponentCount = window.filter(piece => piece === opponentPiece).length;
 
       if (playerCount === 4) {
-        // Player has 4 in a row, it's a winning move
         return Infinity;
       } else if (playerCount === 3 && opponentCount === 0) {
-        // Three player pieces, no opponent pieces, potential winning move
         threatScore += 100;
       } else if (playerCount === 2 && opponentCount === 0) {
-        // Two player pieces, no opponent pieces, potential threat
         threatScore += 10;
       } else if (playerCount === 1 && opponentCount === 0) {
-        // One player piece, no opponent pieces, less potential
         threatScore += 1;
       }
     }
@@ -185,16 +181,12 @@ function evaluateThreats(board, player) {
       const opponentCount = window.filter(piece => piece === opponentPiece).length;
 
       if (playerCount === 4) {
-        // Player has 4 in a row, it's a winning move
         return Infinity;
       } else if (playerCount === 3 && opponentCount === 0) {
-        // Three player pieces, no opponent pieces, potential winning move
         threatScore += 100;
       } else if (playerCount === 2 && opponentCount === 0) {
-        // Two player pieces, no opponent pieces, potential threat
         threatScore += 10;
       } else if (playerCount === 1 && opponentCount === 0) {
-        // One player piece, no opponent pieces, less potential
         threatScore += 1;
       }
     }
@@ -208,16 +200,12 @@ function evaluateThreats(board, player) {
       const opponentCount = window.filter(piece => piece === opponentPiece).length;
 
       if (playerCount === 4) {
-        // Player has 4 in a row, it's a winning move
         return Infinity;
       } else if (playerCount === 3 && opponentCount === 0) {
-        // Three player pieces, no opponent pieces, potential winning move
         threatScore += 100;
       } else if (playerCount === 2 && opponentCount === 0) {
-        // Two player pieces, no opponent pieces, potential threat
         threatScore += 10;
       } else if (playerCount === 1 && opponentCount === 0) {
-        // One player piece, no opponent pieces, less potential
         threatScore += 1;
       }
     }
@@ -231,16 +219,12 @@ function evaluateThreats(board, player) {
       const opponentCount = window.filter(piece => piece === opponentPiece).length;
 
       if (playerCount === 4) {
-        // Player has 4 in a row, it's a winning move
         return Infinity;
       } else if (playerCount === 3 && opponentCount === 0) {
-        // Three player pieces, no opponent pieces, potential winning move
         threatScore += 100;
       } else if (playerCount === 2 && opponentCount === 0) {
-        // Two player pieces, no opponent pieces, potential threat
         threatScore += 10;
       } else if (playerCount === 1 && opponentCount === 0) {
-        // One player piece, no opponent pieces, less potential
         threatScore += 1;
       }
     }
