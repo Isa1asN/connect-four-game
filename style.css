@@ -48,3 +48,7 @@ body{
 .yellow-piece{
   background-color: yellow;
 }
+.win-set{
+  /* background-color:  ; */
+  border: 5px solid rgb(255, 255, 255);
+}

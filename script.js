@@ -38,8 +38,8 @@ function handleTileClick(event) {
     updateBoardUI();
     if (checkWin(row, parseInt(col), currPlayer)) {
       endGame('You' + ' win!');
-      document.body.style.backgroundColor = currPlayer == playerYellow ? 'yellow' : 'red'
-      document.body.style.transition = 'background-color 3s ease-in-out'
+      // document.body.style.backgroundColor = currPlayer == playerYellow ? 'yellow' : 'red'
+      // document.body.style.transition = 'background-color 3s ease-in-out'
       return;
     }
 
@@ -59,8 +59,8 @@ function makeAiMove() {
     updateBoardUI();
     if (checkWin(row, bestMove, playerYellow)) {
       endGame('The AI' + ' wins!');
-      document.body.style.backgroundColor = 'yellow'
-      document.body.style.transition = 'background-color 3s ease-in-out'
+      // document.body.style.backgroundColor = 'yellow'
+      // document.body.style.transition = 'background-color 3s ease-in-out'
     }
     switchPlayer();
   }
@@ -270,6 +270,15 @@ function checkWin(){
             if(board[r][c] != ' '){
               if ( board[r][c] == board[r][c+1] && board[r][c+1]== board[r][c+2] && board[r][c+2]==board[r][c+3]){
                   // setWinner(r, c)
+                  const tile1 = document.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+                  const tile2 = document.querySelector(`[data-row="${r}"][data-col="${c+1}"]`);
+                  const tile3 = document.querySelector(`[data-row="${r}"][data-col="${c+2}"]`);
+                  const tile4 = document.querySelector(`[data-row="${r}"][data-col="${c+3}"]`);
+                  tile1.classList.add('win-set')
+                  tile2.classList.add('win-set')
+                  tile3.classList.add('win-set')
+                  tile4.classList.add('win-set')
+
                   return true
               }
             }
@@ -281,6 +290,14 @@ function checkWin(){
       if(board[r][c] != " "){
         if (board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]){
           // setWinner(r, c)
+          const tile1 = document.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+          const tile2 = document.querySelector(`[data-row="${r+1}"][data-col="${c}"]`);
+          const tile3 = document.querySelector(`[data-row="${r+2}"][data-col="${c}"]`);
+          const tile4 = document.querySelector(`[data-row="${r+3}"][data-col="${c}"]`);
+          tile1.classList.add('win-set')
+          tile2.classList.add('win-set')
+          tile3.classList.add('win-set')
+          tile4.classList.add('win-set')
           return true;
         }
       }
@@ -292,6 +309,14 @@ function checkWin(){
       if(board[r][c] != ' '){
         if(board[r][c] == board[r+1][c+1] && board[r+1][c+1] == board[r+2][c+2] && board[r+2][c+2]==board[r+3][c+3]){
           // setWinner(r, c)
+          const tile1 = document.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+          const tile2 = document.querySelector(`[data-row="${r+1}"][data-col="${c+1}"]`);
+          const tile3 = document.querySelector(`[data-row="${r+2}"][data-col="${c+2}"]`);
+          const tile4 = document.querySelector(`[data-row="${r+3}"][data-col="${c+3}"]`);
+          tile1.classList.add('win-set')
+          tile2.classList.add('win-set')
+          tile3.classList.add('win-set')
+          tile4.classList.add('win-set')
           return true;
         }
       }
@@ -303,6 +328,14 @@ function checkWin(){
       if(board[r][c] != ' '){
         if(board[r][c] == board[r-1][c+1] && board[r-1][c+1] == board[r-2][c+2] && board[r-2][c+2] == board[r-3][c+3]){
           // setWinner(r, c);
+          const tile1 = document.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+          const tile2 = document.querySelector(`[data-row="${r-1}"][data-col="${c+1}"]`);
+          const tile3 = document.querySelector(`[data-row="${r-2}"][data-col="${c+2}"]`);
+          const tile4 = document.querySelector(`[data-row="${r-3}"][data-col="${c+3}"]`);
+          tile1.classList.add('win-set')
+          tile2.classList.add('win-set')
+          tile3.classList.add('win-set')
+          tile4.classList.add('win-set')
           return true;
         }
       }
@@ -359,7 +392,7 @@ function endGame(message) {
   winner.innerText = message;
   gameOver = true;
   const board = document.getElementById('board');
-  board.style.opacity = 0.3
+  board.style.opacity = 0.7
 }
 
 
