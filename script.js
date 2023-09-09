@@ -37,7 +37,9 @@ function handleTileClick(event) {
     board[row][col] = currPlayer;
     updateBoardUI();
     if (checkWin(row, parseInt(col), currPlayer)) {
-      endGame(currPlayer + ' wins!');
+      endGame(currPlayer + '(you)' + ' win!');
+      document.body.style.backgroundColor = currPlayer == playerYellow ? 'yellow' : 'red'
+      document.body.style.transition = 'background-color 3s ease-in-out'
       return;
     }
 
@@ -56,7 +58,9 @@ function makeAiMove() {
     board[row][bestMove] = playerYellow;
     updateBoardUI();
     if (checkWin(row, bestMove, playerYellow)) {
-      endGame(playerYellow + ' wins!');
+      endGame(playerYellow + '(the AI)' + ' wins!');
+      document.body.style.backgroundColor = 'yellow'
+      document.body.style.transition = 'background-color 3s ease-in-out'
     }
     switchPlayer();
   }
