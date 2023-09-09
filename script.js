@@ -5,7 +5,7 @@ let currPlayer = playerRed;
 let gameOver = false;
 const numRows = 6;
 const numCols = 7;
-const aiDepth = 0; 
+const aiDepth = 4; 
 
 const board = Array.from({ length: numRows }, () => Array(numCols).fill(empty));
 
@@ -37,7 +37,7 @@ function handleTileClick(event) {
     board[row][col] = currPlayer;
     updateBoardUI();
     if (checkWin(row, parseInt(col), currPlayer)) {
-      endGame(currPlayer + '(you)' + ' win!');
+      endGame('You' + ' win!');
       document.body.style.backgroundColor = currPlayer == playerYellow ? 'yellow' : 'red'
       document.body.style.transition = 'background-color 3s ease-in-out'
       return;
@@ -58,7 +58,7 @@ function makeAiMove() {
     board[row][bestMove] = playerYellow;
     updateBoardUI();
     if (checkWin(row, bestMove, playerYellow)) {
-      endGame(playerYellow + '(the AI)' + ' wins!');
+      endGame('The AI' + ' wins!');
       document.body.style.backgroundColor = 'yellow'
       document.body.style.transition = 'background-color 3s ease-in-out'
     }
@@ -234,6 +234,8 @@ function endGame(message) {
   const winner = document.getElementById('winner');
   winner.innerText = message;
   gameOver = true;
+  const board = document.getElementById('board');
+  board.style.opacity = 0.3
 }
 
 
