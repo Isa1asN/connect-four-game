@@ -5,7 +5,7 @@ let currPlayer = playerRed;
 let gameOver = false;
 const numRows = 6;
 const numCols = 7;
-const aiDepth = 4; 
+const aiDepth = 0; 
 
 const board = Array.from({ length: numRows }, () => Array(numCols).fill(empty));
 
@@ -125,8 +125,8 @@ function minimax(board, depth, isMaximizing, alpha = -Infinity, beta = Infinity)
 
 // Function to evaluate the board state
 function evaluate(board) {
-  // Implement your evaluation logic here
-  return 0;
+  
+  return 2;
 }
 
 // Function to check if the game is over
@@ -135,9 +135,51 @@ function isGameOver() {
 }
 
 // Function to check for a win
-function checkWin(row, col, player) {
-  // Implement win-checking logic here
-  return false;
+function checkWin(){
+  // horizontal
+  for (let r = 0; r < numRows; r++) {
+    for (let c = 0; c < numCols - 3; c++) {
+            if(board[r][c] != ' '){
+              if ( board[r][c] == board[r][c+1] && board[r][c+1]== board[r][c+2] && board[r][c+2]==board[r][c+3]){
+                  // setWinner(r, c)
+                  return true
+              }
+            }
+    }    
+  }
+  // vertical
+  for(let c = 0; c < numCols; c++){
+    for (let r = 0; r < numRows - 3; r++){
+      if(board[r][c] != " "){
+        if (board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]){
+          // setWinner(r, c)
+          return true;
+        }
+      }
+    }
+  }
+  // anti diagonal
+  for(let r= 0; r < numRows-3; r++){
+    for(let c = 0; c < numCols -3; c++){
+      if(board[r][c] != ' '){
+        if(board[r][c] == board[r+1][c+1] && board[r+1][c+1] == board[r+2][c+2] && board[r+2][c+2]==board[r+3][c+3]){
+          // setWinner(r, c)
+          return true;
+        }
+      }
+    }
+  }
+  // diagonal
+  for(let r= 3; r < numRows; r++){
+    for(let c = 0; c < numCols-3; c++){
+      if(board[r][c] != ' '){
+        if(board[r][c] == board[r-1][c+1] && board[r-1][c+1] == board[r-2][c+2] && board[r-2][c+2] == board[r-3][c+3]){
+          // setWinner(r, c);
+          return true;
+        }
+      }
+    }
+  }
 }
 
 // Function to check if the board is full
