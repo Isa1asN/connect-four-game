@@ -5,14 +5,14 @@ let currPlayer = playerRed;
 let gameOver = false;
 const numRows = 6;
 const numCols = 7;
-const aiDepth = 4; // Adjust this for AI difficulty
+const aiDepth = 4; 
 
 const board = Array.from({ length: numRows }, () => Array(numCols).fill(empty));
 
 // Function to create the game board UI
 function createBoardUI() {
   const boardContainer = document.getElementById('board');
-  console.log(boardContainer)
+  // console.log(boardContainer)
 
   for (let r = 0; r < numRows; r++) {
     for (let c = 0; c < numCols; c++) {
@@ -43,7 +43,6 @@ function handleTileClick(event) {
 
     switchPlayer();
     if (currPlayer === playerYellow && !gameOver) {
-      // AI's turn
       setTimeout(makeAiMove, 500); // Delay for better UX
     }
   }
@@ -185,13 +184,11 @@ function updateBoardUI() {
   }
 }
 
-// Function to end the game
 function endGame(message) {
   const winner = document.getElementById('winner');
   winner.innerText = message;
   gameOver = true;
 }
 
-// Initialize the game
 
 document.addEventListener('DOMContentLoaded', createBoardUI );
